@@ -16,6 +16,15 @@ public class Expense {
     private String Description;
     private BigDecimal amount;
 
+    @NotNull(message = "Description cannot be null")
+    @Size(min = 1, max = 100, message = "Description must be between 1 and 100 characters")
+    private String description;
+
+    @NotNull(message = "Amount cannot be null")
+    @Positive(message = "Amount must be a positive number")
+    private BigDecimal amount;
+
+
     public Long getId() {
         return id;
     }
