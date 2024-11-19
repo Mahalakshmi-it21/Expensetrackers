@@ -40,6 +40,16 @@ public class ExpenseController {
         expenseService.saveExpense(expense);
         return "redirect:/";
     }
+ // handling empty or invalid values - extra added
+    @PostMapping("/saveExpense")
+    public String saveExpense(@Valid @ModelAttribute("expense") Expense expense, BindingResult result, Model model) {
+    if (result.hasErrors()) {
+        return "add-expense";
+    }
+    expenseService.saveExpense(expense);
+    return "redirect:/";
+}
+
 
     // Changed from @PostMapping to @GetMapping for editing an expense
     @GetMapping("/editExpense/{id}")
